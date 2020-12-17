@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dao.MemberDao;
-import domain.Member;
-import domain.RegisterRequest;
+import domain.register.Member;
+import domain.register.RegisterRequest;
 import exception.DuplicateMemberException;
 
 public class MemberRegisterService {

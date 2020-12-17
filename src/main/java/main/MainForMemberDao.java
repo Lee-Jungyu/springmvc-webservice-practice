@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import config.AppCtx;
 import dao.MemberDao;
-import domain.Member;
+import domain.register.Member;
 
 public class MainForMemberDao {
 	private static MemberDao memberDao;

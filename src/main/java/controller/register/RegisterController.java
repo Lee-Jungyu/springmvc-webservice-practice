@@ -1,4 +1,4 @@
-package controller;
+package controller.register;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import domain.RegisterRequest;
+import domain.register.RegisterRequest;
 import exception.DuplicateMemberException;
 import service.MemberRegisterService;
 
@@ -27,7 +27,8 @@ public class RegisterController {
 	
 	@PostMapping("/register/step2")
 	public String handleStep2( 
-			@RequestParam(value = "agree", defaultValue = "false") Boolean agree) {
+			@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
+			RegisterRequest registerRequest) {
 		if(!agree) {
 			return "register/step1";
 		}
