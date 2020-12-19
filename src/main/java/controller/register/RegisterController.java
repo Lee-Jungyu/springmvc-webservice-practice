@@ -1,6 +1,7 @@
 package controller.register;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,11 +43,15 @@ public class RegisterController {
 	
 	@PostMapping("/register/step3")
 	// RegisterRequest 파라미터를 step3.jsp에서 ${registerRequest.name}으로 사용 
-	public String handleStep3(RegisterRequest regReq) {
+	public String handleStep3(RegisterRequest regReq, Errors errors) {
+		new RegisterRequestValidator().validate(regReq, errors);
+		if(errors.hasErrors())
+			return "register/step2";
 		try {
 			memberRegisterService.regist(regReq);
 			return "register/step3";
 		} catch(DuplicateMemberException e) {
+			errors.rejectValue("email", "duplicate");
 			return "register/step2";
 		}
 	}
