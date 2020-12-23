@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import controller.HelloController;
+import controller.register.ChangePwdController;
 import controller.register.LoginController;
 import controller.register.LogoutController;
 import controller.register.RegisterController;
 import controller.survey.SurveyController;
 import service.AuthService;
+import service.ChangePasswordService;
 import service.MemberRegisterService;
 
 @Configuration
@@ -21,6 +23,8 @@ public class ControllerConfig {
 	private MemberRegisterService memberRegSvc;
 	@Autowired
 	private AuthService authService;
+	@Autowired
+	private ChangePasswordService changePasswordService;
 	
 	@Bean
 	public HelloController helloController() {
@@ -49,5 +53,12 @@ public class ControllerConfig {
 	@Bean
 	public LogoutController logoutController() {
 		return new LogoutController();
+	}
+	
+	@Bean
+	public ChangePwdController changePwdController() {
+		ChangePwdController controller = new ChangePwdController();
+		controller.setChangePasswordService(changePasswordService);
+		return controller;
 	}
 }
