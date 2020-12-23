@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 
 import controller.HelloController;
 import controller.register.LoginController;
+import controller.register.LogoutController;
 import controller.register.RegisterController;
 import controller.survey.SurveyController;
 import service.AuthService;
@@ -43,5 +44,10 @@ public class ControllerConfig {
 		LoginController controller = new LoginController();
 		controller.setAuthService(authService);
 		return controller;
+	}
+	
+	@Bean
+	public LogoutController logoutController() {
+		return new LogoutController();
 	}
 }
