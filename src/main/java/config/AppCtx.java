@@ -8,6 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import dao.MemberDao;
+import service.AuthService;
 import service.ChangePasswordService;
 import service.MemberRegisterService;
 
@@ -52,5 +53,12 @@ public class AppCtx {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
 		pwdSvc.setMemberDao(memberDao());
 		return pwdSvc;
+	}
+	
+	@Bean
+	public AuthService authService() {
+		AuthService authService = new AuthService();
+		authService.setMemberDao(memberDao());
+		return authService;
 	}
 }
